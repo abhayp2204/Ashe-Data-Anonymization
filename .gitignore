@@ -1,0 +1,10 @@
+# Ignore Node.js modules
+Ashe/node_modules
+
+# Ignore Flask virtual environment
+backend/flaskvenv
+
+# Ignore Python virtual environment generated files
+backend/__pycache__
+backend/*.pyc
+backend/pyvenv.cfg
