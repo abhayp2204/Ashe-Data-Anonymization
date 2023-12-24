@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  frontend:
+    build:
+      context: ./Ashe
+    ports:
+      - "5173:5173"
+
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "5000:5000"
