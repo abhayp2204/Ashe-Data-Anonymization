@@ -146,7 +146,7 @@ export default function SourceNext() {
     // localStorage.setItem("heirarchy", JSON.stringify(heirarcy_data));
     console.log(localStorage.getItem("data"));
     // console.log(localStorage.getItem("heirarchy"));
-    window.location.href = "/config";
+    window.location.href = "/configure";
   }
 
   function handleFileUpload1(event, row_id) {

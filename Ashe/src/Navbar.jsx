@@ -72,7 +72,7 @@ export default function SideBar() {
         <div style={{ height: "10%" }}></div>
 
         <List>
-          {["Source", "Config", "Anonymizer", "Differential Privacy"].map((text, index) => (
+          {["Source", "Configure", "Anonymizer", "Differential Privacy"].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton
                 onClick={() => {
@@ -81,7 +81,7 @@ export default function SideBar() {
                     } else if (index === 2) {
                         window.location.href = "/anonymizer"
                     } else if (index === 1) {
-                        window.location.href = "/config"
+                        window.location.href = "/configure"
                     } else if (index == 3) {
                         window.location.href = "/dp"
                     }

@@ -112,6 +112,25 @@ def anonymize():
         'epsilons': epsilonValues
     })
 
+from flask import send_file
+
+@app.route('/get_file', methods=['GET'])
+def get_file():
+    filename = request.args.get('filename')
+
+    if not filename:
+        return jsonify({'error': 'No filename specified'})
+
+    # Assuming the file is in the same directory as your Flask app
+    file_path = os.path.join(os.path.dirname(__file__), filename)
+
+    if not os.path.exists(file_path):
+        return jsonify({'error': 'File not found'})
+
+    # Return the file to the client
+    return send_file(file_path, as_attachment=True)
+
+
 @app.route('/')
 def hello_geek():
     return '<h1>Hello from Flask & Docker</h1>'

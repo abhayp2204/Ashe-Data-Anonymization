@@ -11,14 +11,14 @@ import React, { useEffect, useState } from "react";
 import SideBar from "./Navbar";
 
 const Anonymize = () => {
-  const [originalData, setOriginalData] = useState([]);
-  const [columns, setColumns] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [filteredOriginalData, setFilteredOriginalData] =
-    useState(originalData);
-  const [anonymizedData, setAnonymizedData] = useState([]);
-  const [filteredAnonymizedData, setFilteredAnonymizedData] =
-    useState(anonymizedData);
+    const [originalData, setOriginalData] = useState([]);
+    const [columns, setColumns] = useState([]);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [filteredOriginalData, setFilteredOriginalData] =
+        useState(originalData);
+    const [anonymizedData, setAnonymizedData] = useState([]);
+    const [filteredAnonymizedData, setFilteredAnonymizedData] =
+        useState(anonymizedData);
 
 
   useEffect(() => {
