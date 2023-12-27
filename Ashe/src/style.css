@@ -80,16 +80,27 @@ pre {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     background-color: #e63946;
     width: 120px;
-    padding: 10px 20px;
+    padding: 20px 20px;
     color: white;
-    border-radius: 10px;
+    border-radius: 4px;
+    margin-top: 1px;
     margin-bottom: 20px;
+    margin-right: 20px;
 }
 
-.pop {
+.pop:hover {
     cursor: pointer;
-    transform: scale(1.1);
     transition: 300ms ease-in-out;
+    background-color: #d61324;
+}
+
+
+.button-container {
+    display: flex;
+    margin-top: 20px;
+    /* border: 1px solid black; */
+    height: 40px;
 }

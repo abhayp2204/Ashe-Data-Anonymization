@@ -11,29 +11,23 @@ import { Link } from "react-router-dom"
 import { DataGrid } from "@mui/x-data-grid";
 import Box from "@mui/material/Box"
 import Divider from "@mui/material/Divider"
-import FormControlLabel from "@mui/material/FormControlLabel"
-import Radio from "@mui/material/Radio"
-import RadioGroup from "@mui/material/RadioGroup"
 import { Check, Close } from "@mui/icons-material"
 import SideBar from "./Navbar"
 import Papa from 'papaparse'
-import Checkbox from "@mui/material/Checkbox"
 import './style.css'
 
 
 
 const Source = () => {
-    const { file, setFileData, setParsedCSVData, cols, setColsData } = useFile()
-    const [fileContent, setFileContent] = useState("")
-    const [parsedCSV, setParsedCSV] = useState(null)
-    const [rows, setRows] = React.useState([]); // rows of the dataset
+    const { setFileData, setParsedCSVData, setColsData } = useFile()
+    const [rows, setRows] = React.useState([]);
     const [columns, setColumns] = React.useState([]);
     function isFloat(x) {
         return !isNaN(x) && isFinite(x) && Number.isInteger(x) === false && x.toString().includes('.');
     }
 
 
-    const handleFileInputChange = (event) => {
+    const handleFileUpload = (event) => {
         const file = event.target.files[0]
         setFileData(file)
         const formData = new FormData();
@@ -45,18 +39,10 @@ const Source = () => {
 
                 // Save the file name and content in local storage and state
                 localStorage.setItem("uploadedFile", response.data.filename);
-                setFileContent(response.data.content);
 
                 // Parse the file content using Papa
                 Papa.parse(response.data.content, {
                     complete: function (results) {
-                        setParsedCSV((prevCSV) => {
-                            if (prevCSV !== results) {
-                                return results;
-                            }
-                            return prevCSV;
-                        });
-
                         setParsedCSVData((prevData) => {
                             if (prevData !== results) {
                                 return results;
@@ -133,49 +119,74 @@ const Source = () => {
                 }}
             >
                 <Typography variant="h2" component="h2" gutterBottom>
-                    Source - Upload a CSV File
+                    Source
                 </Typography>
 
-                <FormControl fullWidth>
+                {/* <FormControl fullWidth>
                     <input
+                        className="choose-file"
                         type="file"
                         accept=".csv"
                         onChange={handleFileInputChange}
                         style={{ marginBottom: '16px' }}
                     />
-                </FormControl>
+                </FormControl> */}
 
 
-                <Link
-                    to="/configure"
-                    className="linkstyle pop"
-                    variant="contained"
-                    sx={{ mr: 1 }}
-                >
-                    Configure
-                </Link>
-
-                <Button
-                    className="mt"
-                    variant="contained"
-                    startIcon={<Close />}
-                    onClick={() => { window.location.href = "/source" }}
-                >
-                    Cancel
-                </Button>
-                <Divider style={{
-                    backgroundColor: '#023047',
-                    marginTop: '30px',
-                    marginBottom: '10px',
+                {/* <Divider style={{
+                    backgroundColor: '#606067',
+                    marginTop: '10px',
+                    marginBottom: '30px',
                     height: '4px',
-                    opacity: '0.3',
-                }} />
+                }} /> */}
+
+                <Box sx={{ width: "100%" }}>
+                    <Button
+                        sx={{ margin: "10px auto", display: "block", textAlign: "center" }}
+                        variant="contained"
+                        color="primary"
+                        size="large"
+                        component="label"
+                    >
+                        Upload File (CSV)
+                        <input
+                            type="file"
+                            style={{ display: "none" }}
+                            accept="text/csv"
+                            onChange={handleFileUpload}
+                        />
+                    </Button>
+                </Box>
+
+
+                
 
                 <div margin="10px 5px 2px 5px">
                     <div style={{ height: 30, width: "100%", margin: "0px" }}></div>
                 </div>
                 <div style={{ height: 600, width: "100%", marginTop: "50px" }}>
                     <DataGrid rows={rows} columns={columns} pageSize={5} />
+                </div>
+
+                <div className="button-container">
+
+                    <Link
+                        to="/configure"
+                        className="linkstyle pop"
+                        variant="contained"
+                        startIcon={<Check />}
+                        sx={{ mr: 1 }}
+                    >
+                        Configure
+                    </Link>
+
+                    <Button
+                        variant="contained"
+                        startIcon={<Close />}
+                        onClick={() => { window.location.href = "/source" }}
+                    >
+                        Cancel
+                    </Button>
                 </div>
             </Box>
         </Box>

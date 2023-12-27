@@ -152,24 +152,26 @@ const ConfigPage = () => {
 
 
 
+                <div className="button-container">
 
-                <Link
-                    to="/dp"
-                    className="linkstyle pop"
-                    variant="contained"
-                    sx={{ mr: 1 }}
-                >
-                    Anonymize
-                </Link>
+                    <Link
+                        to="/dp"
+                        className="linkstyle pop"
+                        variant="contained"
+                        sx={{ mr: 1 }}
+                    >
+                        Anonymize
+                    </Link>
 
-                <Button
-                    className="mt"
-                    variant="contained"
-                    startIcon={<Close />}
-                    onClick={() => { window.location.href = "/source" }}
-                >
-                    Cancel
-                </Button>
+                    <Button
+                        className="mt"
+                        variant="contained"
+                        startIcon={<Close />}
+                        onClick={() => { window.location.href = "/source" }}
+                    >
+                        Cancel
+                    </Button>
+                </div>
             </Box>
         </Box>
     );

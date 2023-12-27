@@ -18,8 +18,7 @@ function App() {
                     <Route path="/source" element={<Source />} />
                     <Route path="/sourcenext" element={<SourceNext />} />
                     <Route path="/configure" element={<ConfigPage />} />
-                    <Route path="/anonymizer" element={<Anonymize />} />
-                    <Route path="/dp" element={<DiffPrivacy />} />
+                    <Route path="/anonymizer" element={<DiffPrivacy />} />
                 </Routes>
             </Router>
         </FileProvider>
