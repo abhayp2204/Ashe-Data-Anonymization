@@ -5,13 +5,11 @@ Ashe is an easy-to-use data anoymization application designed to allow publicati
 
 <img src="./images/ashe-logo.png" alt="source" width="140px" style="margin-left: 10px;">
 <br />
-<br />
 
 # User Scenario
 The process consists of 3 simple steps"  
 
 <img src="./images/ashe-steps.png" alt="source" width="180px" style="margin-left: 10px;">
-<br />
 <br />
 
 
@@ -20,7 +18,6 @@ The process consists of 3 simple steps"
 
 <br />
 <img src="./images/ashe-source.png" alt="source" width="700px" style="margin-left: 40px;">
-<br />
 <br />
 <br />
 
@@ -36,14 +33,12 @@ The process consists of 3 simple steps"
 <img src="./images/ashe-config.png" alt="config" width="600px" style="margin-left: 40px;">
 <br />
 <br />
-<br />
 
 ## `ANONYMIZER`
 * The final step! After configuration, the user starts the anonymization process which returns the anonymized dataset
 
 <br />
 <img src="./images/ashe-anonymizer.png" alt="anonymizer" width="700px" style="margin-left: 40px;">
-<br />
 <br />
 <br />
 
@@ -59,6 +54,7 @@ You have two different ways to setup Ashe
 3. Run `docker-compose up` to start the application.
 4. Go to `localhost:5173` in your browser.
 5. Congratulations on running the Dockerized application.
+<br />
 
 ## Local
 
