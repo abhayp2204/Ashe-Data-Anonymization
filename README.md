@@ -52,8 +52,7 @@ You have two different ways to setup Ashe
 1. Make sure that you're currently in the home directory, which contains `docker-compose.yml`.
 2. Run `docker-compose build` to create the image from the docker compose file.
 3. Run `docker-compose up` to start the application.
-4. Go to `localhost:5173` in your browser.
-5. Congratulations on running the Dockerized application.
+4. You can now visit `localhost:5173` in your browser!
 <br />
 
 ## Local
