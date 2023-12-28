@@ -2,13 +2,35 @@
 Ashe is an easy-to-use data anoymization application designed to allow publications of datasets for statistical analysis while still protecting the privacy of user data.
 
 # User Scenario
-1. SOURCE - The user will upload a file (csv format)
-2. CONFIG
+* `SOURCE` - The user will upload a file (csv format)  
+
+<br />
+<img src="./images/ashe-source.png" alt="source" width="700px" style="margin-left: 40px;">
+<br />
+<br />
+<br />
+
+* `CONFIG` - The user will decide which attributes must be anonymized, and set an epsilon value for each column - which decides the whether to prioritize privacy (low epsilon) or accuracy (high epsilon).
+
+<br />
+<img src="./images/ashe-config.png" alt="config" width="600px" style="margin-left: 40px;">
+<br />
+<br />
+<br />
+
+3. `ANONYMIZER` - The final step! After configuration, the user starts the anonymization process which returns the anonymized dataset
+
+<br />
+<img src="./images/ashe-anonymizer.png" alt="anonymizer" width="700px" style="margin-left: 40px;">
+<br />
+<br />
+<br />
+
 
 # How to use
-You have two different ways to use Ashe
-1. Docker
-2. Manual setup
+You have two different ways to setup Ashe
+1. `Docker`
+2. `Local`
 
 ## Docker
 1. Make sure that you're currently in the home directory, which contains `docker-compose.yml`.
@@ -17,7 +39,7 @@ You have two different ways to use Ashe
 4. Go to `localhost:5173` in your browser.
 5. Congratulations on running the Dockerized application.
 
-## Manual Setup
+## Local
 
 ### Backend
 1. cd into `/backend`.
