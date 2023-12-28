@@ -1,5 +1,9 @@
 # Ashe-Data-Anonymization
-Ashe is an easy-to-use data anoymization application designed to publications of datasets for statistical analysis while still protecting the privacy of user data.
+Ashe is an easy-to-use data anoymization application designed to allow publications of datasets for statistical analysis while still protecting the privacy of user data.
+
+# User Scenario
+1. SOURCE - The user will upload a file (csv format)
+2. CONFIG
 
 # How to use
 You have two different ways to use Ashe

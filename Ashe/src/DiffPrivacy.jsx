@@ -4,56 +4,32 @@ import { useFile } from './FileContext'
 import axios from "axios"
 import {
     Button,
-    FormControl,
-    Slider,
     Typography
 } from "@mui/material"
 import { DataGrid } from "@mui/x-data-grid";
 import Box from "@mui/material/Box"
 import Divider from "@mui/material/Divider"
-import FormControlLabel from "@mui/material/FormControlLabel"
-import Radio from "@mui/material/Radio"
-import RadioGroup from "@mui/material/RadioGroup"
 import { Check, Close } from "@mui/icons-material"
 import SideBar from "./Navbar"
 import Papa from 'papaparse'
-import Checkbox from "@mui/material/Checkbox"
 
 
 
 const DP = () => {
-    const [anonColor, setAnonColor] = useState("error")
-    const [fileContent, setFileContent] = useState("")
-    const [fileContentAnon, setFileContentAnon] = useState("")
-    const [parsedCSVAnon, setParsedCSVAnon] = useState(null)
+    const [anonColor] = useState("error")
     const [rows, setRows] = React.useState([]); // rows of the dataset
     const [columns, setColumns] = React.useState([]);
 
-    const { file, setFileData, parsedCSV, setParsedCSVData, cols, setColsData } = useFile()
+    const { file, cols } = useFile()
 
 
 
-    useEffect(() => {
-        // If data from the requirements is present in local storage then set the color of the anonymize button to green
-        if (localStorage.getItem("Hdata") !== null) {
-            setAnonColor("success");
-        } else {
-            setAnonColor("error");
-        }
-    }, []);
-
-
-    console.log("PCSV: " + parsedCSV)
-
-
-
-    const handleAnonymizeClick = () => {
+    const handleAnonymize = () => {
         const formData = new FormData();
         formData.append("file", file);
 
         // Collect epsilon values from the col array
         const epsilonValues = cols.map(column => column.epsilon)
-        console.log("Epsilon values: " + epsilonValues)
         formData.append("epsilonValues", JSON.stringify(epsilonValues))
 
         // Collect checked values from the col array
@@ -62,13 +38,11 @@ const DP = () => {
 
         axios.post('http://localhost:5000/anonymize', formData)
             .then(response => {
-                console.log("Anonymization successful:", response);
-                setFileContentAnon(response.data.content_anon);
+                console.log("[ANONYMIZER] Anonymization successful:", response);
 
                 // Parse the file content using Papa
                 Papa.parse(response.data.content_anon, {
                     complete: function (results) {
-                        setParsedCSVAnon(results);
                         let headers = results.data[0]
                         let locCol = []
                         for (let i = 0; i < headers.length; i++) {
@@ -94,11 +68,11 @@ const DP = () => {
                     error: function (error) {
                         console.error('Parse error: Error parsing CSV:', error.message);
                     }
-                });
+                })
             })
             .catch(error => {
                 console.error('Axios error: Error during anonymization:', error.message);
-            });
+            })
     };
 
 
@@ -128,7 +102,7 @@ const DP = () => {
                     variant="contained"
                     startIcon={<Check />}
                     sx={{ mr: 1 }}
-                    onClick={() => handleAnonymizeClick(file)}
+                    onClick={() => handleAnonymize(file)}
                     color={anonColor}
                     >
                     Anonymize
@@ -161,4 +135,4 @@ const DP = () => {
     );
 };
 
-export default DP;
+export default DP

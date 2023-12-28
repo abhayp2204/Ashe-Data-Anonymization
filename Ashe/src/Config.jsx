@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { useFile } from './FileContext'
 
 
-import axios from "axios"
 import {
     Button,
     FormControl,
@@ -10,59 +9,46 @@ import {
     Typography
 } from "@mui/material"
 
-import { DataGrid } from "@mui/x-data-grid";
 import Box from "@mui/material/Box"
 import Divider from "@mui/material/Divider"
 import FormControlLabel from "@mui/material/FormControlLabel"
 import Radio from "@mui/material/Radio"
 import RadioGroup from "@mui/material/RadioGroup"
-import { Check, Close } from "@mui/icons-material"
+import { Close } from "@mui/icons-material"
 import SideBar from "./Navbar"
-import Papa from 'papaparse'
 import Checkbox from "@mui/material/Checkbox"
 
 import { Link } from "react-router-dom"
 
 
 
-const ConfigPage = () => {
+const Config = () => {
     let [selectedModel, setSelectedModels] = useState("kAnonymity")
-    const [anonColor, setAnonColor] = useState("error")
-    const { file, parsedCSV, cols, setColsData } = useFile()
-    console.log("file = ", + JSON.stringify(file))
+    const { parsedCSV, cols, setColsData } = useFile()
 
-
-    useEffect(() => {
-        // If data from the requirements is present in local storage then set the color of the anonymize button to green
-        if (localStorage.getItem("Hdata") !== null) {
-            setAnonColor("success");
-        } else {
-            setAnonColor("error");
-        }
-    }, []);
 
 
     const handleModelChange = (event) => {
-        setSelectedModels(event.target.value);
-    };
+        setSelectedModels(event.target.value)
+    }
 
     const handleColumnToggle = (columnIndex) => {
         setColsData((prevCol) => [
             ...prevCol.slice(0, columnIndex),
             { ...prevCol[columnIndex], checked: !prevCol[columnIndex].checked },
             ...prevCol.slice(columnIndex + 1),
-        ]);
-    };
+        ])
+        console.log('[CONFIG] Column toggled')
+    }
 
     const handleEpsilonChange = (columnIndex, value) => {
         setColsData((prevCol) => [
             ...prevCol.slice(0, columnIndex),
             { ...prevCol[columnIndex], epsilon: value },
             ...prevCol.slice(columnIndex + 1),
-        ]);
-    };
-    console.log(parsedCSV)
-
+        ])
+        console.log('[CONFIG] Epsilon value set')
+    }
 
 
 
@@ -155,7 +141,7 @@ const ConfigPage = () => {
                 <div className="button-container">
 
                     <Link
-                        to="/dp"
+                        to="/anonymizer"
                         className="linkstyle pop"
                         variant="contained"
                         sx={{ mr: 1 }}
@@ -174,7 +160,7 @@ const ConfigPage = () => {
                 </div>
             </Box>
         </Box>
-    );
-};
+    )
+}
 
-export default ConfigPage;
+export default Config

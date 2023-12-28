@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from "react"
+import { useState } from "react"
 import axios from "axios"
 import { useFile } from './FileContext'
 import {
     Button,
-    FormControl,
-    Slider,
     Typography
 } from "@mui/material"
 import { Link } from "react-router-dom"
 import { DataGrid } from "@mui/x-data-grid";
 import Box from "@mui/material/Box"
-import Divider from "@mui/material/Divider"
 import { Check, Close } from "@mui/icons-material"
 import SideBar from "./Navbar"
 import Papa from 'papaparse'
@@ -20,8 +17,8 @@ import './style.css'
 
 const Source = () => {
     const { setFileData, setParsedCSVData, setColsData } = useFile()
-    const [rows, setRows] = React.useState([]);
-    const [columns, setColumns] = React.useState([]);
+    const [rows, setRows] = useState([]);
+    const [columns, setColumns] = useState([]);
     function isFloat(x) {
         return !isNaN(x) && isFinite(x) && Number.isInteger(x) === false && x.toString().includes('.');
     }
@@ -35,7 +32,7 @@ const Source = () => {
 
         axios.post('http://localhost:5000/dataset', formData)
             .then(response => {
-                console.log("File uploaded successfully:", response.data.filename);
+                console.log("[SOURCE] File uploaded successfully:", response.data.filename);
 
                 // Save the file name and content in local storage and state
                 localStorage.setItem("uploadedFile", response.data.filename);
@@ -52,10 +49,9 @@ const Source = () => {
 
                         const x = [];
                         for (let i = 1; i < results.data[0].length; i++) {
-                            const columnValues = results.data.map(row => row[i]).splice(1);
-                            const firstNonNullValue = columnValues.find(value => value !== null && value !== '');
-                            // console.log(firstNonNullValue)
-                            x.push(firstNonNullValue);
+                            const columnValues = results.data.map(row => row[i]).splice(1)
+                            const firstNonNullValue = columnValues.find(value => value !== null && value !== '')
+                            x.push(firstNonNullValue)
                         }
 
 
@@ -66,9 +62,9 @@ const Source = () => {
                                 checked: false,
                                 epsilon: 50,
                                 name: column,
-                            };
-                        });
-                        setColsData(newColState);
+                            }
+                        })
+                        setColsData(newColState)
 
                         let locCol = []
                         for (let i = 0; i < headers.length; i++) {
@@ -92,14 +88,14 @@ const Source = () => {
                         setRows(locRow)
                     },
                     error: function (error) {
-                        console.error('Error parsing CSV:', error.message);
+                        console.error('[SOURCE] Error parsing CSV:', error.message);
                     }
-                });
+                })
             })
             .catch(error => {
-                console.error('Error uploading file:', error.message);
-            });
-    };
+                console.error('[SOURCE] Error uploading file:', error.message);
+            })
+    }
 
 
 
@@ -121,24 +117,6 @@ const Source = () => {
                 <Typography variant="h2" component="h2" gutterBottom>
                     Source
                 </Typography>
-
-                {/* <FormControl fullWidth>
-                    <input
-                        className="choose-file"
-                        type="file"
-                        accept=".csv"
-                        onChange={handleFileInputChange}
-                        style={{ marginBottom: '16px' }}
-                    />
-                </FormControl> */}
-
-
-                {/* <Divider style={{
-                    backgroundColor: '#606067',
-                    marginTop: '10px',
-                    marginBottom: '30px',
-                    height: '4px',
-                }} /> */}
 
                 <Box sx={{ width: "100%" }}>
                     <Button
@@ -174,7 +152,7 @@ const Source = () => {
                         to="/configure"
                         className="linkstyle pop"
                         variant="contained"
-                        startIcon={<Check />}
+                        // startIcon={<Check />}
                         sx={{ mr: 1 }}
                     >
                         Configure
@@ -190,7 +168,7 @@ const Source = () => {
                 </div>
             </Box>
         </Box>
-    );
-};
+    )
+}
 
-export default Source;
+export default Source
