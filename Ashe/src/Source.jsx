@@ -20,7 +20,7 @@ const Source = () => {
     const [rows, setRows] = useState([]);
     const [columns, setColumns] = useState([]);
     function isFloat(x) {
-        return !isNaN(x) && isFinite(x) && Number.isInteger(x) === false && x.toString().includes('.');
+        return !isNaN(x) && isFinite(x)
     }
 
 

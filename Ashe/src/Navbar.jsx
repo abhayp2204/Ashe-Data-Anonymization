@@ -33,7 +33,7 @@ export default function SideBar() {
     // };
 
     const handleLogo = () => {
-        window.location.href = "https://ashe-docs.vercel.app/"
+        window.location.href = "/"
     }
 
     return (

@@ -21,17 +21,11 @@ def private_sum(dataset, epsilonValues, checkedValues):
 
     for column, epsilon, anonymize in zip(dataset.columns[1:], epsilonValues, checkedValues):
         x = BoundedSum(epsilon=epsilon, delta=0, lower_bound=0, upper_bound=100, dtype="float")
-        if anonymize and dataset[column].dtype == 'float64':
-            print(column, epsilon)
-            dataset[column] = dataset[column].apply(lambda value: x.quick_result([value]))
+        if not anonymize: continue
+        # if not dataset[column].dtype == 'float64': continue
+        dataset[column] = dataset[column].apply(lambda value: x.quick_result([value]))
 
     return dataset
-
-# Example usage:
-# df = pd.DataFrame({"A": [1, 2, 3], "B": [4.0, 5.0, 6.0]})
-# epsilon_values = [0.1, 0.2]
-# result = private_sum(df, epsilon_values)
-# print(result)
 
 
 @app.route('/dataset', methods=['POST'])
