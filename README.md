@@ -6,7 +6,6 @@ Ashe is an easy-to-use data anoymization application designed to allow publicati
 <img src="./images/ashe-logo.png" alt="source" width="140px" style="margin-left: 10px;">
 <br />
 <br />
-<br />
 
 # User Scenario
 The process consists of 3 simple steps"  
@@ -14,10 +13,10 @@ The process consists of 3 simple steps"
 <img src="./images/ashe-steps.png" alt="source" width="180px" style="margin-left: 10px;">
 <br />
 <br />
-<br />
 
 
-* `SOURCE` - The user will upload a file (csv format)  
+## `SOURCE`
+* The user will upload a file (csv format)  
 
 <br />
 <img src="./images/ashe-source.png" alt="source" width="700px" style="margin-left: 40px;">
@@ -25,7 +24,13 @@ The process consists of 3 simple steps"
 <br />
 <br />
 
-* `CONFIG` - The user will decide which attributes must be anonymized, and set an epsilon value for each column - which decides the whether to prioritize privacy (low epsilon) or accuracy (high epsilon).
+## `CONFIG` - The user will decide which attributes must be anonymized and set an epsilon value for each column
+* The user will decide which attributes must be anonymized
+* Non numerical values cannot be anonymized, are are thus disabled
+* For such attributes, the user will set an epsilon value (0 to 100)
+* `Epsilon` is a parameter that decides whether to prioritorize privacy or accuracy
+* Higher epsilon values result in more accurate columns, and are optimal for statistical analysis
+* Lower epsilon values are used when privacy is preferred over accuracy
 
 <br />
 <img src="./images/ashe-config.png" alt="config" width="600px" style="margin-left: 40px;">
@@ -33,7 +38,8 @@ The process consists of 3 simple steps"
 <br />
 <br />
 
-3. `ANONYMIZER` - The final step! After configuration, the user starts the anonymization process which returns the anonymized dataset
+## `ANONYMIZER`
+* The final step! After configuration, the user starts the anonymization process which returns the anonymized dataset
 
 <br />
 <img src="./images/ashe-anonymizer.png" alt="anonymizer" width="700px" style="margin-left: 40px;">
